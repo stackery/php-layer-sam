@@ -17,7 +17,9 @@ Resources:
       Policies:
         - AWSXrayWriteOnlyAccess
       Layers:
-        - arn:aws:lambda:us-west-2:887080169480:layer:php71:9
+        - !Ref EnvConfigphpLayerArnAsString
+      Environment:
+        Variables: {}
 Parameters:
   StackTagName:
     Type: String
@@ -25,3 +27,9 @@ Parameters:
   EnvironmentTagName:
     Type: String
     Description: Environment Name (injected by Stackery at deployment time)
+  EnvConfigphpLayerArnAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /<EnvironmentName>/phpLayerArn
+Metadata:
+  EnvConfigParameters:
+    EnvConfigphpLayerArnAsString: phpLayerArn
