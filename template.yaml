@@ -19,7 +19,7 @@ Resources:
         - S3CrudPolicy:
             BucketName: !Ref ObjectStore
       Layers:
-        - arn:aws:lambda:us-west-2:887080169480:layer:php73:2
+        - !Sub arn:aws:lambda:${AWS::Region}:887080169480:layer:php73:2
       Events:
         ApiANYpath:
           Type: Api
